@@ -31,6 +31,24 @@
 
     <div class="container">
         <a class="home-btn" href="#home"><i class="fa-solid fa-house"></i></a>
+        <button id="chatbot-toggle" class="chatbot-toggle"><i class="fa-solid fa-comments"></i></button>
+
+        <div id="chatbot-modal" class="chatbot-modal">
+            <div class="chatbot-header">
+                <h3>Chat With Virtual Me!</h3>
+                <button id="chatbot-close" class="chatbot-close">&times;</button>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages">
+                <p class="bot-message">Hello! How can I help you?</p>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input-field" placeholder="Type your message..."/>
+                <button id="chatbot-send">Send</button>
+            </div>
+        </div>
+
+
+
         <main>
             <section id="home">
                 <h1>Heya!
@@ -41,7 +59,7 @@
                     </span>
                 </h1>
                 <p>Welcome to my Personal Website!</p>
-                <p style="font-style: italic; color: rgb(195, 148, 148);">(Disclaimer: I started coding the page at 15, aspects might not seem very professional...)</p>
+                <p style="font-style: italic; color: rgb(195, 148, 148);">(Disclaimer: I started coding the page at 15 y.o., aspects might not seem very professional...)</p>
                 <p style="font-style: italic; color: #fcbe11;">C'mon, let's dive in!</p>
                 <a href="#about"><i class="fa-solid fa-arrow-down arrow-down-btn"></i></a>
             </section>

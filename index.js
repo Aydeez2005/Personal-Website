@@ -143,79 +143,116 @@ dots[currentIndex].classList.add('active');
 
 
 
-// Show Resume on Button Click
-const resume = document.querySelector('.interactive-resume');
-const resumeBtn = document.querySelector('.interactive-resume-btn');
-const wrapper = document.querySelector('.interactive-resume-wrapper');
-const closeBtn = document.querySelector('.cls-resume-btn');
-const body = document.body;
+// // Show Resume on Button Click
+// const resume = document.querySelector('.interactive-resume');
+// const resumeBtn = document.querySelector('.interactive-resume-btn');
+// const wrapper = document.querySelector('.interactive-resume-wrapper');
+// const closeBtn = document.querySelector('.cls-resume-btn');
+// const body = document.body;
 
-resumeBtn.addEventListener('click', function() {
-  resume.classList.add('resume-show');
-  wrapper.classList.add('resume-wrapper-show');
-  body.classList.add('no-scroll');
+// resumeBtn.addEventListener('click', function() {
+//   resume.classList.add('resume-show');
+//   wrapper.classList.add('resume-wrapper-show');
+//   body.classList.add('no-scroll');
+// });
+
+// closeBtn.addEventListener('click', function() {
+//   wrapper.classList.remove('resume-wrapper-show');
+//   resume.classList.remove('resume-show');
+//   body.classList.remove('no-scroll');
+// });
+
+
+// const resumeNavItems = document.querySelectorAll('.resume-side-nav-content li');
+// const resumeBoxes = document.querySelectorAll('.iresume-box');
+// // Toggle resume box function
+// function toggleResumeBox(boxName) {
+//   resumeBoxes.forEach((box) => {
+//     if (box.classList.contains(boxName)) {
+//       box.classList.add('iresume-box-show');
+//     } else {
+//       box.classList.remove('iresume-box-show');
+//     }
+//   });
+// }
+
+// // Event listeners
+// resumeNavItems.forEach((item) => {
+//   item.addEventListener('click', function() {
+//     const boxName = item.textContent.toLowerCase().replace(/\s+/g, '');
+//     toggleResumeBox(boxName);
+//   });
+// });
+
+
+
+// // Hobbies card carousel
+// const hobby_carousel = document.querySelector('.hobby-content');
+// const hobby_item = document.querySelectorAll('.hobby-item');
+// const prevHobby = document.querySelector('.prev-hobby');
+// const nextHobby = document.querySelector('.next-hobby');
+
+// prevHobby.addEventListener('click', () => {
+//   prevHobbyCard();
+// });
+// nextHobby.addEventListener('click', () => {
+//   nextHobbyCard();
+// });
+
+// function prevHobbyCard() {
+//   let currentNumber = Array.from(hobby_item).findIndex(item => item.classList.contains('active-now'));
+//   hobby_item[currentNumber].classList.remove('active-now');
+//   currentNumber--;
+//   if (currentNumber < 0) {
+//     currentNumber = hobby_item.length - 1;
+//   }
+//   hobby_item[currentNumber].classList.add('active-now');
+// }
+
+// function nextHobbyCard() {
+//   let currentNumber = Array.from(hobby_item).findIndex(item => item.classList.contains('active-now'));
+//   hobby_item[currentNumber].classList.remove('active-now');
+//   currentNumber++;
+//   if (currentNumber >= hobby_item.length) {
+//   currentNumber = 0;
+//   }
+//   hobby_item[currentNumber].classList.add('active-now');
+// }
+
+
+
+// Chatbot
+const chatbotToggle = document.getElementById("chatbot-toggle");
+const chatbotModal = document.getElementById("chatbot-modal");
+const chatbotClose = document.getElementById("chatbot-close");
+
+chatbotToggle.addEventListener("click", () => {
+  chatbotModal.style.display = "flex";
 });
 
-closeBtn.addEventListener('click', function() {
-  wrapper.classList.remove('resume-wrapper-show');
-  resume.classList.remove('resume-show');
-  body.classList.remove('no-scroll');
+chatbotClose.addEventListener("click", () => {
+  chatbotModal.style.display = "none";
 });
 
+const chatbotSend = document.getElementById("chatbot-send");
+const chatbotInput = document.getElementById("chatbot-input-field");
+const chatbotMessages = document.getElementById("chatbot-messages");
 
-const resumeNavItems = document.querySelectorAll('.resume-side-nav-content li');
-const resumeBoxes = document.querySelectorAll('.iresume-box');
-// Toggle resume box function
-function toggleResumeBox(boxName) {
-  resumeBoxes.forEach((box) => {
-    if (box.classList.contains(boxName)) {
-      box.classList.add('iresume-box-show');
-    } else {
-      box.classList.remove('iresume-box-show');
-    }
-  });
-}
+chatbotSend.addEventListener("click", () => {
+  const userMessage = chatbotInput.value.trim();
+  if (userMessage) {
+    // Append user's message to chat area
+    const userMsgElem = document.createElement("p");
+    userMsgElem.className = "user-message";
+    userMsgElem.textContent = userMessage;
+    chatbotMessages.appendChild(userMsgElem);
 
-// Event listeners
-resumeNavItems.forEach((item) => {
-  item.addEventListener('click', function() {
-    const boxName = item.textContent.toLowerCase().replace(/\s+/g, '');
-    toggleResumeBox(boxName);
-  });
-});
+    // Clear the input field
+    chatbotInput.value = "";
 
-
-
-// Hobbies card carousel
-const hobby_carousel = document.querySelector('.hobby-content');
-const hobby_item = document.querySelectorAll('.hobby-item');
-const prevHobby = document.querySelector('.prev-hobby');
-const nextHobby = document.querySelector('.next-hobby');
-
-prevHobby.addEventListener('click', () => {
-  prevHobbyCard();
-});
-nextHobby.addEventListener('click', () => {
-  nextHobbyCard();
-});
-
-function prevHobbyCard() {
-  let currentNumber = Array.from(hobby_item).findIndex(item => item.classList.contains('active-now'));
-  hobby_item[currentNumber].classList.remove('active-now');
-  currentNumber--;
-  if (currentNumber < 0) {
-    currentNumber = hobby_item.length - 1;
+    // Scroll to the bottom
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    
+    // Here you can add code to send the message to your bot backend
   }
-  hobby_item[currentNumber].classList.add('active-now');
-}
-
-function nextHobbyCard() {
-  let currentNumber = Array.from(hobby_item).findIndex(item => item.classList.contains('active-now'));
-  hobby_item[currentNumber].classList.remove('active-now');
-  currentNumber++;
-  if (currentNumber >= hobby_item.length) {
-  currentNumber = 0;
-  }
-  hobby_item[currentNumber].classList.add('active-now');
-}
-
+});
