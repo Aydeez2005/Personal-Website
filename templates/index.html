@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Alice</title>
-<link rel="stylesheet" href="aydeez.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://kit.fontawesome.com/3dd11d199c.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
 
     <header>
         <nav class="navbar">
-                <a href="#home" class="logo"><img src="media/Logo.svg"></a>
+                <a href="#home" class="logo"><img src="{{ url_for('static', filename='media/Logo.svg') }}"></a>
                 <ul class="nav-menu">
                     <li class="nav-item"><a href="#about">About Me</a></li>
                     <li class="nav-item"><a href="#resume">Resume</a></li>
@@ -36,7 +36,10 @@
         <div id="chatbot-modal" class="chatbot-modal">
             <div class="chatbot-header">
                 <h3>Chat With Virtual Me!</h3>
-                <button id="chatbot-close" class="chatbot-close">&times;</button>
+                <div class="chatbot-header-buttons">
+                    <button id="chatbot-clear" class="chatbot-clear"><i class="fa-solid fa-trash-alt"></i></button>
+                    <button id="chatbot-close" class="chatbot-close">&times;</button>
+                </div>
             </div>
             <div class="chatbot-messages" id="chatbot-messages">
                 <p class="bot-message">Hello! How can I help you?</p>
@@ -69,13 +72,13 @@
                 <div class="about-container">
                     <div class="about-pictures">
                         <div class="slideshow">
-                            <img src="media/mirrorSelfie.jpg" alt="Me and a mirror">
-                            <img src="media/japanSilly.jpg" alt="Japan Travels">
-                            <img src="media/JimCarrey.jpeg" alt="Me and Jim" style="object-position: 60% 50%;">
-                            <img src="media/japanTaube.jpg" alt="Me and a bird">
-                            <img src="media/nature1.JPG" alt="nature Pose">
-                            <img src="media/karate6.png" alt="karate Selfie">
-                            <img src="media/cat2.jpeg" alt="cat">
+                            <img src="{{ url_for('static', filename='media/mirrorSelfie.jpg') }}" alt="Me and a mirror">
+                            <img src="{{ url_for('static', filename='media/japanSilly.jpg') }}" alt="Japan Travels">
+                            <img src="{{ url_for('static', filename='media/JimCarrey.jpeg') }}" alt="Me and Jim" style="object-position: 60% 50%;">
+                            <img src="{{ url_for('static', filename='media/japanTaube.jpg') }}" alt="Me and a bird">
+                            <img src="{{ url_for('static', filename='media/nature1.JPG') }}" alt="Nature Pose">
+                            <img src="{{ url_for('static', filename='media/karate6.png') }}" alt="Karate Selfie">
+                            <img src="{{ url_for('static', filename='media/cat2.jpeg') }}" alt="Cat">
                             <div class="progress-bar"></div>
                             <button class="prev">&#10094;</button>
                             <button class="next">&#10095;</button>
@@ -110,7 +113,7 @@
                 <h2>Resume</h2>
                 <div class="resume-content">
                     <div class="resume-text">
-                        <h4>Download my Resume! <a href="media/CV.pdf" target="_blank">
+                        <h4>Download my Resume! <a href="{{ url_for('static', filename='media/CV.pdf') }}" target="_blank">
                             <button class="button-85">PDF <i class="fa-solid fa-download" style="color: white;"></i></button>
                         </a></h4>
                         <!-- <h4 style="margin-top: -40px;">Or check out my <button class="button-85 interactive-resume-btn" role="button" style="margin-left: 20px; font-size: 15px;">Interactive Resume <i class="fa-solid fa-arrow-pointer" style="font-size: 10px; margin-left: 5px; margin-right: -5px;"></i></button></h4> -->
@@ -271,7 +274,7 @@
                         <div class="quotes-pic-container">
                             <div class="q-img-box">
                                 <h4>1 - Peace</h4>
-                                <img src="media/highlands.JPG">
+                                <img src="{{ url_for('static', filename='media/highlands.JPG') }}">
                                 <div class="quote">
                                     <p>"Peace begins with a smile."</p>
                                     <h6>~ Mother Theresa</h6>
@@ -279,7 +282,7 @@
                             </div>
                             <div class="q-img-box">
                                 <h4>2 - Positivity</h4>
-                                <img src="media/grandpa.jpeg">
+                                <img src="{{ url_for('static', filename='media/grandpa.jpeg') }}">
                                 <div class="quote">
                                     <p>"Happiness is not by chance, but by choice."</p>
                                     <h6>~ Jim Rohn</h6>
@@ -287,7 +290,7 @@
                             </div>
                             <div class="q-img-box">
                                 <h4>3 - Simplicity</h4>
-                                <img src="media/kid1.jpeg">
+                                <img src="{{ url_for('static', filename='media/kid1.jpeg') }}">
                                 <div class="quote">
                                     <p>"When you're in deep shit, simple-simple always works."</p>
                                     <h6>~ Hanshi Paul Mitchell</h6>
@@ -295,7 +298,7 @@
                             </div>
                             <div class="q-img-box">
                                 <h4>4 - Discipline</h4>
-                                <img src="media/karateprüfung.JPG">
+                                <img src="{{ url_for('static', filename='media/karateprüfung.JPG') }}">
                                 <div class="quote">
                                     <p>"Mastering others is strength. Mastering yourself is true power."</p>
                                     <h6>~ Lao Tzu</h6>
@@ -303,7 +306,7 @@
                             </div>
                             <div class="q-img-box">
                                 <h4>5 - Calmness</h4>
-                                <img src="media/japanStairs.jpg">
+                                <img src="{{ url_for('static', filename='media/japanStairs.jpg') }}">
                                 <div class="quote">
                                     <p>"Freedom is a calm mind."</p>
                                     <h6>~ Shane Parrish</h6>
@@ -311,7 +314,7 @@
                             </div>
                             <div class="q-img-box">
                                 <h4>6 - Practice</h4>
-                                <img src="media/thailandKick.jpg">
+                                <img src="{{ url_for('static', filename='media/thailandKick.jpg') }}">
                                 <div class="quote">
                                     <p>"Do, or do not. There is no 'try'."</p>
                                     <h6>~ Yoda</h6>
@@ -337,6 +340,6 @@
         </main>
     </div>
 
-    <script src="index.js"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>
 </html>

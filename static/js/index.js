@@ -1,4 +1,3 @@
-
 // Hamburger Menu
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
@@ -225,6 +224,10 @@ dots[currentIndex].classList.add('active');
 const chatbotToggle = document.getElementById("chatbot-toggle");
 const chatbotModal = document.getElementById("chatbot-modal");
 const chatbotClose = document.getElementById("chatbot-close");
+const chatbotClear = document.getElementById("chatbot-clear");
+const chatbotSend = document.getElementById("chatbot-send");
+const chatbotInput = document.getElementById("chatbot-input-field");
+const chatbotMessages = document.getElementById("chatbot-messages");
 
 chatbotToggle.addEventListener("click", () => {
   chatbotModal.style.display = "flex";
@@ -234,11 +237,23 @@ chatbotClose.addEventListener("click", () => {
   chatbotModal.style.display = "none";
 });
 
-const chatbotSend = document.getElementById("chatbot-send");
-const chatbotInput = document.getElementById("chatbot-input-field");
-const chatbotMessages = document.getElementById("chatbot-messages");
+chatbotClear.addEventListener("click", () => {
+  chatbotMessages.innerHTML = "";
 
-chatbotSend.addEventListener("click", () => {
+  const initialMsg = document.createElement("p");
+  initialMsg.className = "bot-message";
+  initialMsg.textContent = "Hello! How can I help you?";
+  chatbotMessages.appendChild(initialMsg);
+});
+
+chatbotInput.addEventListener("keydown", async (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    chatbotSend.click();
+  }
+});
+
+chatbotSend.addEventListener("click", async () => {
   const userMessage = chatbotInput.value.trim();
   if (userMessage) {
     // Append user's message to chat area
@@ -251,6 +266,37 @@ chatbotSend.addEventListener("click", () => {
     chatbotInput.value = "";
 
     // Scroll to the bottom
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+    try {
+      const response = await fetch("/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message: userMessage })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || data.error) {
+        const errorMsgElem = document.createElement("p");
+        errorMsgElem.className = "error-message";
+        errorMsgElem.textContent = data.error || "An error occurred.";
+        chatbotMessages.appendChild(errorMsgElem);
+      } else if (data.answer) {
+        const botMsgElem = document.createElement("p");
+        botMsgElem.className = "bot-message";
+        botMsgElem.textContent = data.answer;
+        chatbotMessages.appendChild(botMsgElem);
+      }
+    } catch (error) {
+      const errorMsgElem = document.createElement("p");
+      errorMsgElem.className = "error-message";
+      errorMsgElem.textContent = "A network error occurred.";
+      chatbotMessages.appendChild(errorMsgElem);
+    }
+
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     
     // Here you can add code to send the message to your bot backend
